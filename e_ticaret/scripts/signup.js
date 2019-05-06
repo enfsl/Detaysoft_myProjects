@@ -47,7 +47,7 @@ function ButtonCreate() {
     // değilse login sayfasına dönder
     if (i == 0) {
       newButton.onclick = function() {
-        // tovaluedb(); //  inputlardaki değerleri alacak bir fonksiyon yazıp burada çağır
+        TovalueDb(); //  inputlardaki değerleri alacak bir fonksiyon yazıp burada çağır
         alert("Kayıt Başarılı");
         window.location = "signup.html"; // inputları temizlemek için sayfayı yeniliyor birnevi.
       };
@@ -59,4 +59,15 @@ function ButtonCreate() {
     }
     buttonContainer.appendChild(newButton);
   }
+}
+// onclickte bu fonksiyon tetiklendi, bu fonksiyonda databasede'ki insert işlemini tetikleyecek.
+function TovalueDb() {
+  var isim = document.getElementById("isim").value;
+  var soyisim = document.getElementById("soyisim").value;
+  var mail = document.getElementById("mail").value;
+  var telno = document.getElementById("telno").value;
+  var adres = document.getElementById("adres").value;
+  var kullaniciadi = document.getElementById("kullaniciadi").value;
+  var sifre = document.getElementById("sifre").value;
+  insertRecords(isim, soyisim, mail, telno, adres, kullaniciadi, sifre);
 }
