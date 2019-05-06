@@ -1,0 +1,28 @@
+body {
+  margin-top: 200px;
+  margin-left: 525px;
+  background-color: whitesmoke;
+}
+.inputs input {
+  width: 250px;
+  height: 30px;
+  margin-bottom: 5px;
+  display: flex;
+  border-radius: 10px;
+  padding-left: 3px;
+}
+.inputs #adres {
+  width: 250px;
+  height: 50px;
+}
+.buttons #kayitol {
+  width: 100px;
+  height: 30px;
+  border-radius: 5px;
+}
+.buttons #vazgec {
+  width: 100px;
+  height: 30px;
+  margin-left: 55px;
+  border-radius: 5px;
+}
