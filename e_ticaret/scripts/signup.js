@@ -48,8 +48,8 @@ function ButtonCreate() {
     if (i == 0) {
       newButton.onclick = function() {
         TovalueDb(); //  inputlardaki değerleri alacak bir fonksiyon yazıp burada çağır
-        alert("Kayıt Başarılı");
-        window.location = "signup.html"; // inputları temizlemek için sayfayı yeniliyor birnevi.
+        // alert("Kayıt Başarılı");
+        // window.location = "signup.html"; // inputları temizlemek için sayfayı yeniliyor birnevi.
       };
     } else {
       // vazgeç butonuna basıldığında

@@ -10,7 +10,7 @@ function createMusteriTable() {
   createDb();
   db.transaction(function(tablo_olustur) {
     tablo_olustur.executeSql(
-      "create table Musteriler(Isim TEXT, Soyisim TEXT, Mail TEXT, Telno TEXT, Adres TEXT, Kullanici_adi TEXT, Sifre TEXT )"
+      "create table Musteriler(Isim TEXT, Soyisim TEXT, Mail TEXT, Telno TEXT, Adres TEXT, Kullanici_adi TEXT UNIQUE, Sifre TEXT )"
     );
   });
 }
@@ -28,23 +28,26 @@ function insertRecords(
 ) {
   createDb();
   db.transaction(function(kayit) {
-    //var checkusername = function() {
-    //checkRecords(Kullanici_adi);
-    // };
     kayit.executeSql(
       "insert into Musteriler(Isim,Soyisim,Mail,Telno,Adres,Kullanici_adi,Sifre) values(?,?,?,?,?,?,?)",
-      [Isim, Soyisim, Mail, Telno, Adres, Kullanici_adi, Sifre]
+      [Isim, Soyisim, Mail, Telno, Adres, Kullanici_adi, Sifre],
+      success,
+      error
     );
   });
 }
-/*
-function checkRecords(kullaniciadi) {
-  createDb();
-  db.transaction(function(sorgu) {
-    sorgu.executeSql(
-      "SELECT Kullanici_adi FROM Musteriler WHERE Kullanici_adi = ?",
-      [kullaniciadi]
-    );
-  });
+
+function success(transaction, res) {
+  // executesql'de succes dönerse burası çalışıyor
+  console.log(res);
+  alert("Kayıt başarılı bir şekilde yapıldı!");
 }
-*/
+
+function error(transaction, err) {
+  // executesql'de error dönerse burası çalışıyor
+  console.log(err);
+  if (err.code === 6) {
+    // kullanici_adi database'de var ise (hata kodu 6)
+    alert("Böyle bir kullanıcı var, başka bir kullanıcı adı giriniz."); // bu alerti bas.
+  }
+}
