@@ -31,23 +31,41 @@ function insertRecords(
     kayit.executeSql(
       "insert into Musteriler(Isim,Soyisim,Mail,Telno,Adres,Kullanici_adi,Sifre) values(?,?,?,?,?,?,?)",
       [Isim, Soyisim, Mail, Telno, Adres, Kullanici_adi, Sifre],
-      success, // executesql'in 3'üncü parametresi result dönderiyor işlem başarılıysa
-      error // 4'ünccü parametresi errorları dönderebiliyor
+      successInsert, // executesql'in 3'üncü parametresi result dönderiyor işlem başarılıysa
+      errorInsert // 4'ünccü parametresi errorları dönderebiliyor
     ); // ben aşağıda yazdığım 2 fonksiyonu burada referans olarak gönderdim.
   });
 }
 
-function success(transaction, res) {
+function successInsert(transaction, res) {
   // executesql'de succes dönerse burası çalışıyor
   console.log(res);
   alert("Kayıt başarılı bir şekilde yapıldı!");
+  window.location = "signup.html"; // inputları temizlemek için sayfayı yeniliyor birnevi.
 }
 
-function error(transaction, err) {
+function errorInsert(transaction, err) {
   // executesql'de error dönerse burası çalışıyor
   console.log(err);
   if (err.code === 6) {
     // kullanici_adi database'de var ise (hata kodu 6)
     alert("Böyle bir kullanıcı var, başka bir kullanıcı adı giriniz.");
   }
+}
+
+function checkRecord(Kullanici_adi, Sifre) {
+  createDb();
+  db.transaction(function(kayitkontrol) {
+    kayitkontrol.executeSql(
+      "SELECT * FROM Musteriler WHERE Kullanici_adi=? AND Sifre=?",
+      [Kullanici_adi, Sifre],
+      function(kayitkontrol, results) {
+        // results'a sorgudan gelenler düşüyor
+        if (results.rows.length > 0) {
+          // eğer sorgudan geriye 1'den fazla row dönerse kullanıcıyı ürün sayfasına
+          window.location = "views/product.html"; // yönlendiriyor
+        } else alert("girilen kullanıcı adı veya şifre yanlış!"); // değilse alerti bas.
+      }
+    );
+  });
 }
