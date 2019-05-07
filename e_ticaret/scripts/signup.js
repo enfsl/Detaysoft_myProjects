@@ -69,5 +69,16 @@ function TovalueDb() {
   var adres = document.getElementById("adres").value;
   var kullaniciadi = document.getElementById("kullaniciadi").value;
   var sifre = document.getElementById("sifre").value;
-  insertRecords(isim, soyisim, mail, telno, adres, kullaniciadi, sifre);
+  if (
+    // girilen inputlardaki değerler doğru girilmiş mi onu kontrol ettim doğruysa database'e ekleyecek
+    isim.length > 1 &&
+    soyisim.length > 1 &&
+    mail.includes("@") == true &&
+    telno.length >= 10 &&
+    adres.length > 1 &&
+    kullaniciadi.length >= 4 &&
+    sifre.length >= 6
+  ) {
+    insertRecords(isim, soyisim, mail, telno, adres, kullaniciadi, sifre);
+  } else alert("Lütfen değerleri doğru giriniz!");
 }
