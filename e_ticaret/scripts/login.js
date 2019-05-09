@@ -41,15 +41,14 @@ function ButtonCreate() {
     buttonContainer.appendChild(newButton);
   }
 }
-
 function checkAccountdb() {
   // inputlara girilen değeri kontrol edip inputlardaki değerleri database.js'teki
   // checkreord'a yollayıp fonksiyonunu çağıracak.
   var kullaniciadi = document.getElementById("kullaniciad").value;
   var kullanicisifre = document.getElementById("kullanicisifre").value;
-  if (kullaniciadi.length >= 4 && kullanicisifre.length >= 6)
+  if (kullaniciadi.length >= 4 && kullanicisifre.length >= 6) {
     checkRecord(kullaniciadi, kullanicisifre);
-  else
+  } else
     alert(
       "Kullanıcı adı 4, Kullanıcı şifresi 6 karakter veya daha büyük olmalıdır!"
     );

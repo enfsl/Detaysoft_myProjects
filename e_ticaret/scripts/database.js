@@ -41,7 +41,7 @@ function successInsert(transaction, res) {
   // executesql'de succes dönerse burası çalışıyor
   console.log(res);
   alert("Kayıt başarılı bir şekilde yapıldı!");
-  window.location = "signup.html"; // inputları temizlemek için sayfayı yeniliyor birnevi.
+  window.location = "signup.html"; // inputları temizlemek için
 }
 
 function errorInsert(transaction, err) {
@@ -52,7 +52,6 @@ function errorInsert(transaction, err) {
     alert("Böyle bir kullanıcı var, başka bir kullanıcı adı giriniz.");
   }
 }
-
 function checkRecord(Kullanici_adi, Sifre) {
   createDb();
   db.transaction(function(kayitkontrol) {
@@ -62,7 +61,7 @@ function checkRecord(Kullanici_adi, Sifre) {
       function(kayitkontrol, results) {
         // results'a sorgudan gelenler düşüyor
         if (results.rows.length > 0) {
-          // eğer sorgudan geriye 1'den fazla row dönerse kullanıcıyı ürün sayfasına
+          // eğer sorgudan geriye row dönerse kullanıcıyı ürün sayfasına
           window.location = "views/product.html"; // yönlendiriyor
         } else alert("girilen kullanıcı adı veya şifre yanlış!"); // değilse alerti bas.
       }
