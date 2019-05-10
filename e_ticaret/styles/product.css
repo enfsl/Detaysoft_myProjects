@@ -9,27 +9,27 @@ body {
   display: flex;
 }
 .navbar button {
-  width: 100px;
+  width: 120px;
   height: 30px;
   border-radius: 5px;
   margin-top: 5px;
 }
 .navbar input {
-  width: 60px;
+  width: 90px;
   height: 26px;
   margin-top: 5px;
   border-radius: 5px;
-  padding-left: 3px;
+  padding-left: 5px;
   padding-right: 0px;
   background-color: whitesmoke;
   color: black;
   font-size: 16px;
   border: 0.5px solid;
-  margin-left: 900px;
+  margin-left: 30px;
 }
 .navbar #Sepet {
   margin-left: 30px;
 }
 .navbar #Cıkıs {
-  margin-left: 30px;
+  margin-left: 820px;
 }

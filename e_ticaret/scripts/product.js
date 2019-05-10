@@ -8,24 +8,33 @@ function CreateNavbar() {
   ButtonContainer = document.getElementsByClassName("navbar")[0];
   ButtonText = ["Anasayfa", "Sepet", "Çıkış"];
   ButtonId = ["Anasayfa", "Sepet", "Cıkıs"];
-
   var InputContainer, InputId, newInput, InputValue;
   InputContainer = document.getElementsByClassName("navbar")[0];
   InputId = "kullaniciad";
   InputValue = document.cookie; // Input'un value'sine cookie'den username'i çekip atacak.
   for (var i = 0; i < ButtonId.length; i++) {
-    if (i == 2) {
-      newInput = document.createElement("input");
-      newInput.id = InputId;
-      newInput.value = InputValue;
-      newInput.readOnly = "readonly";
-      InputContainer.appendChild(newInput);
-    }
     newButton = document.createElement("button");
     newButton.id = ButtonId[i];
     newButton.innerHTML = ButtonText[i];
+    if (i == 0)
+      newButton.onclick = function() {
+        window.location = "product.html";
+      };
+    if (i == 1)
+      newButton.onclick = function() {
+        window.location = "basket.html";
+      };
+    if (i == 2)
+      newButton.onclick = function() {
+        window.location = "../index.html";
+      };
     ButtonContainer.appendChild(newButton);
   }
+  newInput = document.createElement("input");
+  newInput.id = InputId;
+  newInput.value = InputValue;
+  newInput.readOnly = "readonly";
+  InputContainer.appendChild(newInput);
 }
 
 function CreateProducts() {
