@@ -52,6 +52,10 @@ function errorInsert(transaction, err) {
     alert("Böyle bir kullanıcı var, başka bir kullanıcı adı giriniz.");
   }
 }
+function setCookie(username) {
+  // kullanıcı giriş yaptığında cookie'ye kullanıcı adını set edicek.
+  document.cookie = username;
+}
 function checkRecord(Kullanici_adi, Sifre) {
   createDb();
   db.transaction(function(kayitkontrol) {
@@ -62,6 +66,7 @@ function checkRecord(Kullanici_adi, Sifre) {
         // results'a sorgudan gelenler düşüyor
         if (results.rows.length > 0) {
           // eğer sorgudan geriye row dönerse kullanıcıyı ürün sayfasına
+          setCookie(Kullanici_adi); // kullanici adini cookie'e set et.
           window.location = "views/product.html"; // yönlendiriyor
         } else alert("girilen kullanıcı adı veya şifre yanlış!"); // değilse alerti bas.
       }

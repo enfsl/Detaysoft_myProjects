@@ -1,0 +1,35 @@
+/* 
+.navbar #Anasayfa {
+} */
+body {
+  background-color: whitesmoke;
+}
+.navbar {
+  margin: auto 10px;
+  display: flex;
+}
+.navbar button {
+  width: 100px;
+  height: 30px;
+  border-radius: 5px;
+  margin-top: 5px;
+}
+.navbar input {
+  width: 60px;
+  height: 26px;
+  margin-top: 5px;
+  border-radius: 5px;
+  padding-left: 3px;
+  padding-right: 0px;
+  background-color: whitesmoke;
+  color: black;
+  font-size: 16px;
+  border: 0.5px solid;
+  margin-left: 900px;
+}
+.navbar #Sepet {
+  margin-left: 30px;
+}
+.navbar #Cıkıs {
+  margin-left: 30px;
+}
