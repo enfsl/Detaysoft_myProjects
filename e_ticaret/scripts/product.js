@@ -6,8 +6,8 @@ function Create() {
 function CreateNavbar() {
   var ButtonContainer, ButtonText, ButtonId, newButton;
   ButtonContainer = document.getElementsByClassName("navbar")[0];
-  ButtonText = ["Anasayfa", "Sepet", "Çıkış"];
-  ButtonId = ["Anasayfa", "Sepet", "Cıkıs"];
+  ButtonText = ["Anasayfa", "Sepet", "Ürün Ekle", "Ürün Düzenle", "Çıkış"];
+  ButtonId = ["Anasayfa", "Sepet", "Urunekle", "Urunduzenle", "Cıkıs"];
   var InputContainer, InputId, newInput, InputValue;
   InputContainer = document.getElementsByClassName("navbar")[0];
   InputId = "kullaniciad";
@@ -26,13 +26,23 @@ function CreateNavbar() {
       };
     if (i == 2)
       newButton.onclick = function() {
+        window.location = "../views/addproduct.html";
+      };
+    if (i == 3) {
+      newButton.onclick = function() {
+        window.location = "../views/editproduct.html";
+      };
+    }
+    if (i == 4) {
+      newButton.onclick = function() {
         window.location = "../index.html";
       };
+    }
     ButtonContainer.appendChild(newButton);
   }
   newInput = document.createElement("input");
   newInput.id = InputId;
-  newInput.value = InputValue;
+  newInput.value = "Merhaba " + InputValue;
   newInput.readOnly = "readonly";
   InputContainer.appendChild(newInput);
 }
@@ -41,7 +51,7 @@ function CreateProducts() {
   // 1 table 3 tr 9 td
   var TableContainer, newTable;
   var TrContainer, TrClass, newTr;
-  var TdContainer, newTd;
+  var TdContainer, newTd, TdId;
   TrClass = ["product-birinci", "product-ikinci", "product-ucuncu"];
   TdId = ["birincihucre", "ikincihucre", "ucuncuhucre"];
   //
@@ -60,9 +70,31 @@ function CreateProducts() {
     TdContainer = document.getElementsByClassName(TrClass[i])[0];
     for (var j = 0; j < 3; j++) {
       newTd = document.createElement("td");
-      newTd.id = TdId[j];
+      // newTd.tagName = TdId[j];
       TdContainer.appendChild(newTd);
     }
   }
 }
-console.log(document.cookie);
+// function ShowProducts() {
+//   var ImgSource = [("superstar.jpg", "superstar80s.jpg", "ultraboost19.jpg")];
+//   for (var i = 0; i < 3; i++) {
+//     for (var j = 0; j < 3; j++) {
+//       if (i == 0)
+//         var ImgContainer = document
+//           .getElementsByClassName("product-birinci")[0]
+//           .getElementsByTagName("td")[j];
+//       if (i == 1)
+//         var ImgContainer = document
+//           .getElementsByClassName("product-ikinci")[0]
+//           .getElementsByTagName("td")[j];
+//       if (i == 2)
+//         var ImgContainer = document
+//           .getElementsByClassName("product-ucuncu")[0]
+//           .getElementsByTagName("td")[j];
+//       var newImg = document.createElement("img");
+//       newImg.src = "../img/" + ImgSource[j];
+//       ImgContainer.appendChild(newImg);
+//     }
+//   }
+// }
+// console.log(document.cookie);

@@ -5,31 +5,41 @@ body {
   background-color: whitesmoke;
 }
 .navbar {
-  margin: auto 10px;
+  /* margin: auto px; */
   display: flex;
+  background-color: black;
+  border-radius: 8px;
 }
 .navbar button {
   width: 120px;
-  height: 30px;
-  border-radius: 5px;
-  margin-top: 5px;
+  height: 40px;
+  margin: auto 50px;
+  background-color: black;
+  color: white;
+  border: 0px solid;
 }
 .navbar input {
-  width: 90px;
+  width: 150px;
   height: 26px;
-  margin-top: 5px;
-  border-radius: 5px;
-  padding-left: 5px;
-  padding-right: 0px;
-  background-color: whitesmoke;
-  color: black;
-  font-size: 16px;
-  border: 0.5px solid;
-  margin-left: 30px;
+  background-color: black;
+  color: white;
+  padding: 6px;
+  font-size: 15px;
+  border: 0px solid;
+  margin-left: 60px;
 }
-.navbar #Sepet {
-  margin-left: 30px;
+
+/* .product-table {
+  display: block;
+  margin-top: 50px;
+  margin-left: 100px;
 }
-.navbar #Cıkıs {
-  margin-left: 820px;
+.product-birinci img {
+  margin: auto 20px;
 }
+.product-ikinci img {
+  margin: auto 20px;
+}
+.product-ucuncu img {
+  margin: auto 20px;
+} */
