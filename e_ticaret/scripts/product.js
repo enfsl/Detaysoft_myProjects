@@ -75,6 +75,7 @@ function CreateProducts() {
     }
   }
 }
+
 // function ShowProducts() {
 //   var ImgSource = [("superstar.jpg", "superstar80s.jpg", "ultraboost19.jpg")];
 //   for (var i = 0; i < 3; i++) {

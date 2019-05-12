@@ -1,0 +1,14 @@
+TODO
+
+2-Product sayfamda Urunler tablosundaki verileri alıp 3 satır 3 sütunu geçmeyecek şekilde
+verileri şu şekilde göster, ürünün resmi, altında ürün ismi, fiyatı 
+onların altında sepete ekle ve ürün bilgileri butonları olsun.
+
+Not: eklenecek <img>'in src'unu database'deki Urun_src'den al (alternatif yollar da olabilir ama)
+
+Biten TODOS
+
+1-Ürün ekle sayfasına ürünün; adını, fiyatını, stok bilgisini,
+açıklaması(tanımlamasını) ve resim yolunu girebileceğim inputlar ekle. 
+inputlardan girilen bilgiler butona basıldığında eksik veya hatalı değil ise
+database'de Urunler tablosuna insert edilsin.

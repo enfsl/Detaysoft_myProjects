@@ -14,8 +14,17 @@ function createMusteriTable() {
     );
   });
 }
+function createUrunTable() {
+  createDb();
+  db.transaction(function(tablo_olustur) {
+    tablo_olustur.executeSql(
+      "create table Urunler(Urun_id INTEGER PRIMARY KEY, Urun_adi TEXT, Urun_fiyat INTEGER, Urun_stok INTEGER, Urun_tanim TEXT, Urun_src TEXT)"
+    );
+  });
+}
 createDb(); // database'i oluştur
 createMusteriTable(); // tabloyu oluştur
+createUrunTable();
 
 function insertRecords(
   Isim,
@@ -31,20 +40,20 @@ function insertRecords(
     kayit.executeSql(
       "insert into Musteriler(Isim,Soyisim,Mail,Telno,Adres,Kullanici_adi,Sifre) values(?,?,?,?,?,?,?)",
       [Isim, Soyisim, Mail, Telno, Adres, Kullanici_adi, Sifre],
-      successInsert, // executesql'in 3'üncü parametresi result dönderiyor işlem başarılıysa
-      errorInsert // 4'ünccü parametresi errorları dönderebiliyor
+      successRecInsert, // executesql'in 3'üncü parametresi result dönderiyor işlem başarılıysa
+      errorRecInsert // 4'ünccü parametresi errorları dönderebiliyor
     ); // ben aşağıda yazdığım 2 fonksiyonu burada referans olarak gönderdim.
   });
 }
 
-function successInsert(transaction, res) {
+function successRecInsert(transaction, res) {
   // executesql'de succes dönerse burası çalışıyor
   console.log(res);
   alert("Kayıt başarılı bir şekilde yapıldı!");
   window.location = "signup.html"; // inputları temizlemek için
 }
 
-function errorInsert(transaction, err) {
+function errorRecInsert(transaction, err) {
   // executesql'de error dönerse burası çalışıyor
   console.log(err);
   if (err.code === 6) {
@@ -52,10 +61,52 @@ function errorInsert(transaction, err) {
     alert("Böyle bir kullanıcı var, başka bir kullanıcı adı giriniz.");
   }
 }
+function InsertProduct(Urun_adi, Urun_fiyat, Urun_stok, Urun_tanim, Urun_src) {
+  createDb(); // varsa open, yoksa create edicek.
+  db.transaction(function(kayit) {
+    kayit.executeSql(
+      "insert into Urunler(Urun_adi,Urun_fiyat,Urun_stok,Urun_tanim,Urun_src) values(?,?,?,?,?)",
+      [Urun_adi, Urun_fiyat, Urun_stok, Urun_tanim, Urun_src],
+      successPdtInsert,
+      errorPdtInsert
+    );
+  });
+}
+function successPdtInsert(transaction, res) {
+  // executesql'de succes dönerse burası çalışıyor
+  console.log(res);
+  alert("Ürün başarılı bir şekilde oluşturuldu");
+  window.location = "addproduct.html"; // inputları temizlemek için
+}
+
+function errorPdtInsert(transaction, err) {
+  // executesql'de error dönerse burası çalışıyor
+  console.log(err);
+  alert("Hata!");
+}
 function setCookie(username) {
   // kullanıcı giriş yaptığında cookie'ye kullanıcı adını set edicek.
   document.cookie = username;
 }
+
+// function DisplayProduct() {
+//   createDb();
+//   db.transaction(function(goruntule) {
+//     goruntule.executeSql("SELECT Urun_adi FROM Urunler"),
+//       [],
+//       function(sqlTransaction, sqlResultSet) {
+//         var rows = sqlResultSet.rows;
+//         var len = rows.length;
+//         var cur_item;
+//         for (var i = 0; i < len; i++) {
+//           var cur_item = rows[i];
+//           console.log(cur_item.Urun_adi);
+//         }
+//       };
+//   });
+// }
+// DisplayProduct();
+
 function checkRecord(Kullanici_adi, Sifre) {
   createDb();
   db.transaction(function(kayitkontrol) {
