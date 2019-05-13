@@ -89,23 +89,56 @@ function setCookie(username) {
   document.cookie = username;
 }
 
-// function DisplayProduct() {
-//   createDb();
-//   db.transaction(function(goruntule) {
-//     goruntule.executeSql("SELECT Urun_adi FROM Urunler"),
-//       [],
-//       function(sqlTransaction, sqlResultSet) {
-//         var rows = sqlResultSet.rows;
-//         var len = rows.length;
-//         var cur_item;
-//         for (var i = 0; i < len; i++) {
-//           var cur_item = rows[i];
-//           console.log(cur_item.Urun_adi);
-//         }
-//       };
-//   });
-// }
-// DisplayProduct();
+function DisplayProduct() {
+  var result = [];
+  db.transaction(function(tx) {
+    tx.executeSql("SELECT * FROM Urunler", [], function(tx, rs) {
+      for (var i = 0; i < rs.rows.length; i++) {
+        var row = rs.rows.item(i);
+        result[i] = row;
+      }
+      console.log(result);
+
+      var TableContainer, newTable;
+      TableContainer = document.getElementsByClassName("products")[0];
+      newTable = document.createElement("table");
+      newTable.className = "product-table";
+      TableContainer.appendChild(newTable);
+
+      var TrContainer = document.getElementsByClassName("product-table")[0];
+      console.log(result.length);
+
+      var len = result.length;
+      var sayac = 0;
+      for (var i = 0; i < 3; i++) {
+        var newTr = document.createElement("tr");
+
+        for (var j = 0; j < 3; j++) {
+          var newTd = document.createElement("td");
+          newTr.appendChild(newTd);
+
+          if (sayac < result.length) {
+            var newImg = document.createElement("img");
+            newImg.src = "../img/" + result[sayac]["Urun_src"];
+            newTd.appendChild(newImg);
+            var newH = document.createElement("h2");
+            newH.innerHTML = result[sayac]["Urun_adi"] + " Ayakkabı";
+            var newH4 = document.createElement("h4");
+            newH4.innerHTML =
+              "Ürün fiyatı " + result[sayac]["Urun_fiyat"] + "TL";
+            newButton = document.createElement("button");
+            newButton.innerHTML = "Sepete Ekle";
+            newTd.appendChild(newH);
+            newTd.appendChild(newH4);
+            newTd.appendChild(newButton);
+            sayac++;
+          }
+          TrContainer.appendChild(newTr);
+        }
+      }
+    });
+  });
+}
 
 function checkRecord(Kullanici_adi, Sifre) {
   createDb();

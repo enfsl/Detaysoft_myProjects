@@ -9,6 +9,7 @@ body {
   display: flex;
   background-color: black;
   border-radius: 8px;
+  height: 50px;
 }
 .navbar button {
   width: 120px;
@@ -17,18 +18,47 @@ body {
   background-color: black;
   color: white;
   border: 0px solid;
+  font-size: 16px;
 }
 .navbar input {
   width: 150px;
   height: 26px;
   background-color: black;
   color: white;
-  padding: 6px;
-  font-size: 15px;
+  padding: 12px;
+  font-size: 16px;
   border: 0px solid;
-  margin-left: 60px;
+  margin-left: 50px;
 }
-
+body img {
+  margin: auto 55px;
+  margin-top: 50px;
+}
+body h2 {
+  padding-left: 5px;
+  color: black;
+  margin: auto 50px;
+}
+body h4 {
+  padding-left: 5px;
+  color: grey;
+  margin: auto 50px;
+}
+body img {
+  border-radius: 8px;
+}
+body button {
+  width: 120px;
+  height: 30px;
+  border: 0px solid;
+  background-color: black;
+  color: white;
+  font-size: 15px;
+  margin: auto 55px;
+  padding-left: 5px;
+  margin-top: 10px;
+  border-radius: 8px;
+}
 /* .product-table {
   display: block;
   margin-top: 50px;

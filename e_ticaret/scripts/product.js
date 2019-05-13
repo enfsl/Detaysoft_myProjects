@@ -1,7 +1,6 @@
 function Create() {
   // navbar'da anasayfa, kullanıcı adı, sepet, çıkış
   CreateNavbar();
-  CreateProducts();
 }
 function CreateNavbar() {
   var ButtonContainer, ButtonText, ButtonId, newButton;
@@ -47,55 +46,4 @@ function CreateNavbar() {
   InputContainer.appendChild(newInput);
 }
 
-function CreateProducts() {
-  // 1 table 3 tr 9 td
-  var TableContainer, newTable;
-  var TrContainer, TrClass, newTr;
-  var TdContainer, newTd, TdId;
-  TrClass = ["product-birinci", "product-ikinci", "product-ucuncu"];
-  TdId = ["birincihucre", "ikincihucre", "ucuncuhucre"];
-  //
-  TableContainer = document.getElementsByClassName("products")[0];
-  newTable = document.createElement("table");
-  newTable.className = "product-table";
-  TableContainer.appendChild(newTable);
-  //
-  TrContainer = document.getElementsByClassName("product-table")[0];
-  for (var i = 0; i < 3; i++) {
-    newTr = document.createElement("tr");
-    newTr.className = TrClass[i];
-    TrContainer.appendChild(newTr);
-  }
-  for (var i = 0; i < 3; i++) {
-    TdContainer = document.getElementsByClassName(TrClass[i])[0];
-    for (var j = 0; j < 3; j++) {
-      newTd = document.createElement("td");
-      // newTd.tagName = TdId[j];
-      TdContainer.appendChild(newTd);
-    }
-  }
-}
-
-// function ShowProducts() {
-//   var ImgSource = [("superstar.jpg", "superstar80s.jpg", "ultraboost19.jpg")];
-//   for (var i = 0; i < 3; i++) {
-//     for (var j = 0; j < 3; j++) {
-//       if (i == 0)
-//         var ImgContainer = document
-//           .getElementsByClassName("product-birinci")[0]
-//           .getElementsByTagName("td")[j];
-//       if (i == 1)
-//         var ImgContainer = document
-//           .getElementsByClassName("product-ikinci")[0]
-//           .getElementsByTagName("td")[j];
-//       if (i == 2)
-//         var ImgContainer = document
-//           .getElementsByClassName("product-ucuncu")[0]
-//           .getElementsByTagName("td")[j];
-//       var newImg = document.createElement("img");
-//       newImg.src = "../img/" + ImgSource[j];
-//       ImgContainer.appendChild(newImg);
-//     }
-//   }
-// }
-// console.log(document.cookie);
+DisplayProduct();
