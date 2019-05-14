@@ -126,11 +126,42 @@ function DisplayProduct() {
             var newH4 = document.createElement("h4");
             newH4.innerHTML =
               "Ürün fiyatı " + result[sayac]["Urun_fiyat"] + "TL";
+
             newButton = document.createElement("button");
             newButton.innerHTML = "Sepete Ekle";
+
+            newTd2 = document.createElement("td");
+
+            newInputCt = document.createElement("input");
+            newInputCt.type = "number";
+            newInputCt.min = "1";
+            newInputCt.max = "99";
+            newInputCt.value = "1";
+            newInputCt.id = "InputCount";
+
+            newSelectNum = document.createElement("select");
+            newSelectNum.id = "SelectNum";
+            var Numsec = [
+              "Numara Seç",
+              "40",
+              "41",
+              "42",
+              "43",
+              "44",
+              "45",
+              "46"
+            ];
+            for (var f = 0; f < 8; f++) {
+              var option = document.createElement("option");
+              option.value = option.textContent = Numsec[f];
+              newSelectNum.appendChild(option);
+            }
             newTd.appendChild(newH);
             newTd.appendChild(newH4);
-            newTd.appendChild(newButton);
+            newTd2.appendChild(newButton);
+            newTd.appendChild(newSelectNum);
+            newTd2.appendChild(newInputCt);
+            newTd.appendChild(newTd2);
             sayac++;
           }
           TrContainer.appendChild(newTr);

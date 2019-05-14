@@ -54,22 +54,16 @@ body button {
   background-color: black;
   color: white;
   font-size: 15px;
-  margin: auto 55px;
+  margin-left: 55px;
   padding-left: 5px;
   margin-top: 10px;
   border-radius: 8px;
 }
-/* .product-table {
-  display: block;
-  margin-top: 50px;
-  margin-left: 100px;
+#SelectNum {
+  margin: auto 55px;
+  font-size: 15px;
 }
-.product-birinci img {
-  margin: auto 20px;
+#InputCount {
+  font-size: 15px;
+  margin-left: 30px;
 }
-.product-ikinci img {
-  margin: auto 20px;
-}
-.product-ucuncu img {
-  margin: auto 20px;
-} */
