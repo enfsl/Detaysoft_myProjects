@@ -22,9 +22,18 @@ function createUrunTable() {
     );
   });
 }
+function CreateSepetTable() {
+  createDb();
+  db.transaction(function(tablo_olustur) {
+    tablo_olustur.executeSql(
+      "create table Sepet(Sepet_id INTEGER PRIMARY KEY, Kullanici_adi TEXT FOREIGN KEY REFERENCES Musteriler(Kullanici_adi), Urun_id INTEGER FOREIGN KEY REFERENCES Urunler(Urun_id)"
+    );
+  });
+}
 createDb(); // database'i oluştur
 createMusteriTable(); // tabloyu oluştur
 createUrunTable();
+CreateSepetTable();
 
 function insertRecords(
   Isim,
@@ -84,92 +93,6 @@ function errorPdtInsert(transaction, err) {
   console.log(err);
   alert("Hata!");
 }
-function setCookie(username) {
-  // kullanıcı giriş yaptığında cookie'ye kullanıcı adını set edicek.
-  document.cookie = username;
-}
-
-function DisplayProduct() {
-  var result = [];
-  db.transaction(function(tx) {
-    tx.executeSql("SELECT * FROM Urunler", [], function(tx, rs) {
-      for (var i = 0; i < rs.rows.length; i++) {
-        var row = rs.rows.item(i);
-        result[i] = row;
-      }
-      console.log(result);
-
-      var TableContainer, newTable;
-      TableContainer = document.getElementsByClassName("products")[0];
-      newTable = document.createElement("table");
-      newTable.className = "product-table";
-      TableContainer.appendChild(newTable);
-
-      var TrContainer = document.getElementsByClassName("product-table")[0];
-      console.log(result.length);
-
-      var len = result.length;
-      var sayac = 0;
-      for (var i = 0; i < 3; i++) {
-        var newTr = document.createElement("tr");
-
-        for (var j = 0; j < 3; j++) {
-          var newTd = document.createElement("td");
-          newTr.appendChild(newTd);
-
-          if (sayac < result.length) {
-            var newImg = document.createElement("img");
-            newImg.src = "../img/" + result[sayac]["Urun_src"];
-            newTd.appendChild(newImg);
-            var newH = document.createElement("h2");
-            newH.innerHTML = result[sayac]["Urun_adi"] + " Ayakkabı";
-            var newH4 = document.createElement("h4");
-            newH4.innerHTML =
-              "Ürün fiyatı " + result[sayac]["Urun_fiyat"] + "TL";
-
-            newButton = document.createElement("button");
-            newButton.innerHTML = "Sepete Ekle";
-
-            newTd2 = document.createElement("td");
-
-            newInputCt = document.createElement("input");
-            newInputCt.type = "number";
-            newInputCt.min = "1";
-            newInputCt.max = "99";
-            newInputCt.value = "1";
-            newInputCt.id = "InputCount";
-
-            newSelectNum = document.createElement("select");
-            newSelectNum.id = "SelectNum";
-            var Numsec = [
-              "Numara Seç",
-              "40",
-              "41",
-              "42",
-              "43",
-              "44",
-              "45",
-              "46"
-            ];
-            for (var f = 0; f < 8; f++) {
-              var option = document.createElement("option");
-              option.value = option.textContent = Numsec[f];
-              newSelectNum.appendChild(option);
-            }
-            newTd.appendChild(newH);
-            newTd.appendChild(newH4);
-            newTd2.appendChild(newButton);
-            newTd.appendChild(newSelectNum);
-            newTd2.appendChild(newInputCt);
-            newTd.appendChild(newTd2);
-            sayac++;
-          }
-          TrContainer.appendChild(newTr);
-        }
-      }
-    });
-  });
-}
 
 function checkRecord(Kullanici_adi, Sifre) {
   createDb();
@@ -181,7 +104,7 @@ function checkRecord(Kullanici_adi, Sifre) {
         // results'a sorgudan gelenler düşüyor
         if (results.rows.length > 0) {
           // eğer sorgudan geriye row dönerse kullanıcıyı ürün sayfasına
-          setCookie(Kullanici_adi); // kullanici adini cookie'e set et.
+          setCookieUsername(Kullanici_adi); // kullanici adini cookie'e set et.
           window.location = "views/product.html"; // yönlendiriyor
         } else alert("girilen kullanıcı adı veya şifre yanlış!"); // değilse alerti bas.
       }

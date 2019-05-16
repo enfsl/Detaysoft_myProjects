@@ -1,11 +1,8 @@
 TODO
-3- Product sayfasına sepete eklenin yanına kaç adet olacak onu ekle, bunun bilgisini de cookie'de tut,
-sepete ekle butonuna basıldığında hangi üründen basılmış bununda ismini cookie'e al
-daha sonra sepete eklendi alerti bas.
-sepet sayfasına tıklayınca, cookie'den hangi üründen basıldığını ve adedini tutacağı için
-burdan fiyatı adet ile çarp göster(birden çok ürün ve fiyat olabilir buna göre tasarla), 
-ürünün adını image'ini falan da göster sepet sayfasında
-birde satın al butonu ve sepeti temizle ve vazgeç butonları ekle
+
+4- Sepet veritabanını oluştur, Sepete ekle butonuna bastığımda cookie'den veriyi okuyup sepet tablosuna;
+sepet_id increment, kullanici_adi cookie'den username, ürün_id'ye cookie'den buttonclicked+1 verilerini
+insert et
 
 Biten TODOS
 
@@ -17,3 +14,7 @@ database'de Urunler tablosuna insert edilsin.
 2-Product sayfamda Urunler tablosundaki verileri alıp 3 satır 3 sütunu geçmeyecek şekilde
 verileri şu şekilde göster, ürünün resmi, altında ürün ismi, fiyatı 
 onların altında sepete ekle ve ürün bilgileri butonları olsun.
+
+3- Product sayfasına sepete eklenin yanına kaç adet olacak onu ekle, bunun bilgisini de cookie'de tut,
+sepete ekle butonuna basıldığında hangi üründen basılmış bununda ismini cookie'e al
+daha sonra sepete eklendi alerti bas.
