@@ -30,3 +30,13 @@ function getId(ButtonId) {
 
   console.log(document.cookie);
 }
+
+function SetBasketCookie() {
+  let urun_id = getCookie("buttonclicked");
+  urun_id = parseInt(urun_id) + 1;
+  var kullanici_adi = getCookie("Username");
+  var adet = getCookie("UCount");
+  var ayakkabı_num = getCookie("ANum");
+  if (ayakkabı_num == "Numara Seç") alert("Ayakkabı numarası seçiniz!");
+  else InsertBasket(kullanici_adi, urun_id, ayakkabı_num, adet);
+}

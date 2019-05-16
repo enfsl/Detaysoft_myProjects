@@ -26,10 +26,18 @@ function CreateSepetTable() {
   createDb();
   db.transaction(function(tablo_olustur) {
     tablo_olustur.executeSql(
-      "create table Sepet(Sepet_id INTEGER PRIMARY KEY, Kullanici_adi TEXT FOREIGN KEY REFERENCES Musteriler(Kullanici_adi), Urun_id INTEGER FOREIGN KEY REFERENCES Urunler(Urun_id)"
+      "create table Sepet(Sepet_id INTEGER PRIMARY KEY, Kullanici_adi TEXT, Urun_id INTEGER, Ayakkabı_num TEXT, Adet INTEGER,  FOREIGN KEY (Kullanici_adi) REFERENCES Musteriler (Kullanici_adi), FOREIGN KEY (Urun_id) REFERENCES Urunler (Urun_id))"
     );
   });
 }
+
+// function DropTable() {
+//   createDb();
+//   db.transaction(function(tablo_olustur) {
+//     tablo_olustur.executeSql("DROP TABLE Sepet");
+//   });
+// }
+
 createDb(); // database'i oluştur
 createMusteriTable(); // tabloyu oluştur
 createUrunTable();
@@ -93,7 +101,29 @@ function errorPdtInsert(transaction, err) {
   console.log(err);
   alert("Hata!");
 }
+function InsertBasket(Kullanici_adi, Urun_id, Ayakkabı_num, Adet) {
+  createDb();
+  db.transaction(function(kayit) {
+    kayit.executeSql(
+      "insert into Sepet(Kullanici_adi,Urun_id,Ayakkabı_num,Adet) values (?,?,?,?)",
+      [Kullanici_adi, Urun_id, Ayakkabı_num, Adet],
+      succesBasktInsert,
+      errorBasktInsert
+    );
+  });
+}
+function succesBasktInsert(transaction, res) {
+  // executesql'de succes dönerse burası çalışıyor
+  console.log(res);
+  alert("Ürün Sepete Eklendi");
+  window.location = "../views/product.html"; // inputları temizlemek için
+}
 
+function errorBasktInsert(transaction, err) {
+  // executesql'de error dönerse burası çalışıyor
+  console.log(err);
+  alert("Hata!");
+}
 function checkRecord(Kullanici_adi, Sifre) {
   createDb();
   db.transaction(function(kayitkontrol) {

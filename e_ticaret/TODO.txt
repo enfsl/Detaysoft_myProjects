@@ -1,9 +1,5 @@
 TODO
 
-4- Sepet veritabanını oluştur, Sepete ekle butonuna bastığımda cookie'den veriyi okuyup sepet tablosuna;
-sepet_id increment, kullanici_adi cookie'den username, ürün_id'ye cookie'den buttonclicked+1 verilerini
-insert et
-
 Biten TODOS
 
 1-Ürün ekle sayfasına ürünün; adını, fiyatını, stok bilgisini,
@@ -18,3 +14,7 @@ onların altında sepete ekle ve ürün bilgileri butonları olsun.
 3- Product sayfasına sepete eklenin yanına kaç adet olacak onu ekle, bunun bilgisini de cookie'de tut,
 sepete ekle butonuna basıldığında hangi üründen basılmış bununda ismini cookie'e al
 daha sonra sepete eklendi alerti bas.
+
+4- Sepet veritabanını oluştur, Sepete ekle butonuna bastığımda cookie'den veriyi okuyup sepet tablosuna;
+sepet_id increment, kullanici_adi cookie'den username, ürün_id'ye cookie'den buttonclicked+1 verilerini
+insert et

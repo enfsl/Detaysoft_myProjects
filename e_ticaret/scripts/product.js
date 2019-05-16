@@ -51,6 +51,7 @@ function CreateNavbar() {
 }
 
 function DisplayProduct() {
+  createDb();
   var result = [];
   db.transaction(function(tx) {
     tx.executeSql("SELECT * FROM Urunler", [], function(tx, rs) {
@@ -91,8 +92,7 @@ function DisplayProduct() {
             newButton.onclick = function() {
               // hangi butondan clicklenmiş onun id'sini aldım.
               getId(this.id);
-              alert("Ürün Sepete Eklendi");
-              window.location = "../views/product.html";
+              SetBasketCookie();
             };
 
             newTd2 = document.createElement("td");
