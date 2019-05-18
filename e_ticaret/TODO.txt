@@ -1,5 +1,9 @@
 TODO
 
+5- Ürün düzenleme sayfasında, select'te seçili olan ada göre ürünün ad,fiyat,tanım,src bilgilerini
+inputlara getir. kullanıcı kayıt et butonuna tıkladığı zaman o ürünün where sartındaki id'sine göre
+bu ürün bilgilerine update çek. 
+
 Biten TODOS
 
 1-Ürün ekle sayfasına ürünün; adını, fiyatını, stok bilgisini,

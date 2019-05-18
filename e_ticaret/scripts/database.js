@@ -30,14 +30,6 @@ function CreateSepetTable() {
     );
   });
 }
-
-// function DropTable() {
-//   createDb();
-//   db.transaction(function(tablo_olustur) {
-//     tablo_olustur.executeSql("DROP TABLE Sepet");
-//   });
-// }
-
 createDb(); // database'i oluştur
 createMusteriTable(); // tabloyu oluştur
 createUrunTable();
@@ -150,6 +142,23 @@ function BasketDelete(Sepet_id) {
       function(transaction, result) {
         alert("Sepet'ten kaldırıldı");
         window.location = "../views/basket.html";
+      },
+      function(transaction, error) {
+        console.log(error);
+      }
+    );
+  });
+}
+
+function BasketUpdate(urunadi, uruntanim, urunsrc, urunfiyat, selecturun) {
+  createDb();
+  db.transaction(function(tx) {
+    tx.executeSql(
+      "UPDATE Urunler SET Urun_adi=?, Urun_tanim=?, Urun_src=?, Urun_fiyat=? where Urun_adi=?",
+      [urunadi, uruntanim, urunsrc, urunfiyat, selecturun],
+      function(transaction, result) {
+        alert("Ürün güncelleme başarılı");
+        window.location = "../views/editproduct.html";
       },
       function(transaction, error) {
         console.log(error);

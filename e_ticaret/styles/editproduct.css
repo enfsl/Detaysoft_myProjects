@@ -1,0 +1,49 @@
+body {
+  background-color: whitesmoke;
+  margin: auto 35%;
+  margin-top: 125px;
+}
+body select {
+  width: 170px;
+  height: 30px;
+  background-color: black;
+  color: white;
+  font-size: 15px;
+  border-radius: 8px;
+}
+.Selector button {
+  width: 170px;
+  height: 30px;
+  border: 0px solid;
+  background-color: black;
+  color: white;
+  font-size: 15px;
+  border-radius: 8px;
+  margin-left: 20px;
+}
+body input {
+  width: 200px;
+  height: 15px;
+  font-size: 14px;
+  margin-left: 70px;
+  display: flex;
+  margin-bottom: 8px;
+  margin-top: 30px;
+  background-color: black;
+  color: white;
+  border: 0px solid;
+  padding: 12px;
+  border-radius: 8px;
+}
+
+.ProductUpdate button {
+  width: 130px;
+  height: 30px;
+  border: 0px solid;
+  background-color: black;
+  color: white;
+  font-size: 14px;
+  border-radius: 8px;
+  margin-left: 40px;
+  margin-top: 20px;
+}
