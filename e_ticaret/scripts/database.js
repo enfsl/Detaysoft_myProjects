@@ -141,3 +141,19 @@ function checkRecord(Kullanici_adi, Sifre) {
     );
   });
 }
+
+function BasketDelete(Sepet_id) {
+  db.transaction(function(tx) {
+    tx.executeSql(
+      "delete from Sepet where Sepet_id=?",
+      [Sepet_id],
+      function(transaction, result) {
+        alert("Sepet'ten kaldırıldı");
+        window.location = "../views/basket.html";
+      },
+      function(transaction, error) {
+        console.log(error);
+      }
+    );
+  });
+}

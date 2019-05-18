@@ -6,11 +6,12 @@ function Create() {
 var gelen = [];
 var adet = [];
 var toplam = 0;
-
 function ShowBasket(username) {
   var resultBasket = [];
   var resultProduct = [];
   var sayac = 0;
+  var sepetid = [];
+  var sepetsayac = 0;
   createDb();
   db.transaction(function(tx) {
     tx.executeSql(
@@ -21,6 +22,7 @@ function ShowBasket(username) {
           var row = rs.rows.item(i);
           resultBasket.push(row);
           adet.push(resultBasket[i]["Adet"]);
+          sepetid.push(resultBasket[i]["Sepet_id"]);
         }
       }
     );
@@ -66,10 +68,15 @@ function ShowBasket(username) {
 
             newButton = document.createElement("button");
             newButton.innerHTML = "Sepetten kaldır";
+          }
+          function Sil(id) {
+            // ürünü sepetten kaldır
             newButton.onclick = function() {
-              window.location = "../views/product.html";
+              BasketDelete(id);
             };
           }
+          Sil(sepetid[sepetsayac]);
+          sepetsayac++;
           newTd.appendChild(newAd);
           newTd.appendChild(newImg);
           newTd.appendChild(newFiyat);
