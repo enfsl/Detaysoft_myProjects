@@ -134,6 +134,42 @@ function checkRecord(Kullanici_adi, Sifre) {
   });
 }
 
+function CheckBasket(urun_id, kullanici_adi, ayakkabi_num, adet) {
+  createDb();
+  db.transaction(function(kayitkontrol) {
+    kayitkontrol.executeSql(
+      "SELECT * FROM Sepet WHERE Urun_id=? AND Kullanici_adi=? AND Ayakkabı_num=?",
+      [urun_id, kullanici_adi, ayakkabi_num],
+      function(kayitkontrol, results) {
+        // results'a sorgudan gelenler düşüyor
+        if (results.rows.length > 0) {
+          BasketAdetUpdate(adet, urun_id, kullanici_adi, ayakkabi_num);
+        } else {
+          var donen = InsertBasketCookie();
+          InsertBasket(donen[0], donen[1], donen[2], donen[3]);
+        }
+      }
+    );
+  });
+}
+function BasketAdetUpdate(adet, urun_id, kullanici_adi, ayakkabi_num) {
+  createDb();
+  db.transaction(function(tx) {
+    tx.executeSql(
+      "UPDATE Sepet SET Adet=Adet+? WHERE Urun_id=? AND Kullanici_adi=? AND Ayakkabı_num=?",
+      [adet, urun_id, kullanici_adi, ayakkabi_num],
+      function(transaction, result) {
+        alert("Aynı ürün sepette var, adeti güncellendi!");
+        window.location = "../views/product.html";
+      },
+      function(transaction, error) {
+        console.log(error);
+        alert("aa");
+      }
+    );
+  });
+}
+
 function BasketDelete(Sepet_id) {
   db.transaction(function(tx) {
     tx.executeSql(
@@ -142,22 +178,6 @@ function BasketDelete(Sepet_id) {
       function(transaction, result) {
         alert("Sepet'ten kaldırıldı");
         window.location = "../views/basket.html";
-      },
-      function(transaction, error) {
-        console.log(error);
-      }
-    );
-  });
-}
-
-function BuyDelete(username) {
-  db.transaction(function(tx) {
-    tx.executeSql(
-      "delete from Sepet where Kullanici_adi=?",
-      [username],
-      function(transaction, result) {
-        alert("Satın alma başarılı");
-        window.location = "../views/product.html";
       },
       function(transaction, error) {
         console.log(error);
@@ -175,6 +195,22 @@ function BasketUpdate(urunadi, uruntanim, urunsrc, urunfiyat, selecturun) {
       function(transaction, result) {
         alert("Ürün güncelleme başarılı");
         window.location = "../views/editproduct.html";
+      },
+      function(transaction, error) {
+        console.log(error);
+      }
+    );
+  });
+}
+
+function BuyDelete(username) {
+  db.transaction(function(tx) {
+    tx.executeSql(
+      "delete from Sepet where Kullanici_adi=?",
+      [username],
+      function(transaction, result) {
+        alert("Satın alma başarılı");
+        window.location = "../views/product.html";
       },
       function(transaction, error) {
         console.log(error);

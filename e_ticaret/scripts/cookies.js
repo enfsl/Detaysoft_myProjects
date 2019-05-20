@@ -38,5 +38,15 @@ function SetBasketCookie() {
   var adet = getCookie("UCount");
   var ayakkabı_num = getCookie("ANum");
   if (ayakkabı_num == "Numara Seç") alert("Ayakkabı numarası seçiniz!");
-  else InsertBasket(kullanici_adi, urun_id, ayakkabı_num, adet);
+  else {
+    CheckBasket(urun_id, kullanici_adi, ayakkabı_num, adet);
+  }
+}
+function InsertBasketCookie() {
+  let urun_id = getCookie("buttonclicked");
+  urun_id = parseInt(urun_id) + 1;
+  var kullanici_adi = getCookie("Username");
+  var adet = getCookie("UCount");
+  var ayakkabı_num = getCookie("ANum");
+  return (dondur = [kullanici_adi, urun_id, ayakkabı_num, adet]);
 }
