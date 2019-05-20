@@ -150,6 +150,22 @@ function BasketDelete(Sepet_id) {
   });
 }
 
+function BuyDelete(username) {
+  db.transaction(function(tx) {
+    tx.executeSql(
+      "delete from Sepet where Kullanici_adi=?",
+      [username],
+      function(transaction, result) {
+        alert("Satın alma başarılı");
+        window.location = "../views/product.html";
+      },
+      function(transaction, error) {
+        console.log(error);
+      }
+    );
+  });
+}
+
 function BasketUpdate(urunadi, uruntanim, urunsrc, urunfiyat, selecturun) {
   createDb();
   db.transaction(function(tx) {

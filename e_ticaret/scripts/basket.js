@@ -113,7 +113,7 @@ function CreateNavbar() {
       };
     if (i == 1)
       newButton.onclick = function() {
-        window.location = "basket.html";
+        window.location = "../views/buy.html";
       };
     ButtonContainer.appendChild(newButton);
   }
