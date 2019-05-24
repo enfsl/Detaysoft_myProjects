@@ -68,12 +68,27 @@ function ShowBasket(username) {
 
             newButton = document.createElement("button");
             newButton.innerHTML = "Sepetten kaldır";
-          }
-          function Sil(id) {
-            // ürünü sepetten kaldır
-            newButton.onclick = function() {
-              BasketDelete(id);
-            };
+            newButton.className = "Sepettenkaldir";
+            function Sil(id) {
+              newButton.onclick = function() {
+                DialogBox();
+                bttn = document.getElementsByClassName("Sepettenkaldir").length;
+                for (var i = 0; i < bttn; i++) {
+                  document.getElementsByClassName("Sepettenkaldir")[
+                    i
+                  ].disabled = true;
+                }
+                var buttonifclick = document.getElementById("Kaldir");
+                buttonifclick.onclick = function() {
+                  // eğer sepetteki adet gelen adetten küçük ise alert ver
+                  // değilse silme işlemini yap
+                  // eper ürün 0 adet kalırsa sepetten delete et.
+                  var dialoginputcount = document.getElementById("dialogadet")
+                    .value;
+                  CheckBasketAdet(id, dialoginputcount);
+                };
+              };
+            }
           }
           Sil(sepetid[sepetsayac]);
           sepetsayac++;
@@ -121,4 +136,50 @@ function CreateNavbar() {
   newInput.id = "Tutar";
   newInput.readOnly = "readonly";
   InputContainer.appendChild(newInput);
+}
+
+function DialogControl() {
+  bttn = document.getElementsByClassName("Sepettenkaldir").length;
+  for (var i = 0; i < bttn; i++) {
+    document.getElementsByClassName("Sepettenkaldir")[i].disabled = false;
+  }
+}
+
+function DialogBox() {
+  var Dialog = document.createElement("dialog");
+  Dialog.className = "deleteAdetDialog";
+  document.body.appendChild(Dialog);
+  var Container;
+  var ButtonId, ButtonText, newButton;
+  Container = document.getElementsByClassName("deleteAdetDialog")[0];
+  ButtonId = ["Kaldir", "DialogVazgec"];
+  ButtonText = ["Kaldır", "Vazgeç"];
+
+  var paragraph = document.createElement("p");
+  paragraph.textContent = "Sepetten kaç adet ürün kaldırılacak?";
+  Container.appendChild(paragraph);
+
+  var newInput = document.createElement("input");
+  newInput.id = "dialogadet";
+  newInput.type = "number";
+  newInput.value = 1;
+  newInput.max = 10;
+  newInput.min = 1;
+  Container.appendChild(newInput);
+
+  for (var i = 0; i < ButtonId.length; i++) {
+    newButton = document.createElement("button");
+    newButton.id = ButtonId[i];
+    newButton.innerHTML = ButtonText[i];
+    if (i == 1) {
+      newButton.onclick = function() {
+        Dialog.close();
+        var dialog = document.getElementsByClassName("deleteAdetDialog")[0];
+        dialog.remove();
+        DialogControl();
+      };
+    }
+    Container.appendChild(newButton);
+  }
+  Dialog.show();
 }

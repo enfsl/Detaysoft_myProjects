@@ -67,3 +67,19 @@ body input {
   padding: 12px;
   border-radius: 8px;
 }
+.deleteAdetDialog {
+  width: 400px;
+  height: 180px;
+}
+.deleteAdetDialog button {
+  display: block;
+  margin-left: 140px;
+}
+.deleteAdetDialog p {
+  font-size: 17px;
+  margin-left: 80px;
+}
+.deleteAdetDialog input {
+  display: block;
+  margin-left: 160px;
+}

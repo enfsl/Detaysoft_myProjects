@@ -152,6 +152,26 @@ function CheckBasket(urun_id, kullanici_adi, ayakkabi_num, adet) {
     );
   });
 }
+
+function CheckBasketAdet(Sepet_id, inputcount) {
+  createDb();
+  db.transaction(function(kayitkontrol) {
+    kayitkontrol.executeSql(
+      "SELECT Adet FROM Sepet WHERE Sepet_id=?",
+      [Sepet_id],
+      function(kayitkontrol, results) {
+        // results'a sorgudan gelenler düşüyor
+        if (results.rows.length > 0) {
+          if (results.rows[0]["Adet"] > inputcount) {
+            BasketCountUpdate(inputcount, Sepet_id);
+            debugger;
+          } else BasketDelete(Sepet_id);
+        }
+      }
+    );
+  });
+}
+
 function BasketAdetUpdate(adet, urun_id, kullanici_adi, ayakkabi_num) {
   createDb();
   db.transaction(function(tx) {
@@ -164,7 +184,22 @@ function BasketAdetUpdate(adet, urun_id, kullanici_adi, ayakkabi_num) {
       },
       function(transaction, error) {
         console.log(error);
-        alert("aa");
+        alert("hata!");
+      }
+    );
+  });
+}
+function BasketCountUpdate(adet, Sepet_id) {
+  db.transaction(function(tx) {
+    tx.executeSql(
+      "update Sepet SET Adet=Adet-? where Sepet_id=?",
+      [adet, Sepet_id],
+      function(transaction, result) {
+        alert("Sepet'ten " + adet + " adet kaldırıldı");
+        window.location = "../views/basket.html";
+      },
+      function(transaction, error) {
+        console.log(error);
       }
     );
   });
@@ -176,7 +211,7 @@ function BasketDelete(Sepet_id) {
       "delete from Sepet where Sepet_id=?",
       [Sepet_id],
       function(transaction, result) {
-        alert("Sepet'ten kaldırıldı");
+        alert("Ürün sepet'ten kaldırıldı");
         window.location = "../views/basket.html";
       },
       function(transaction, error) {
