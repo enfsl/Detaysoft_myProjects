@@ -21,15 +21,14 @@ function ArrowEvent(event) {
   centerY = offsetT + svgheight;
   var arrowx = event.pageX;
   var arrowy = event.pageY;
-  var radians = Math.atan2(arrowy - centerY, arrowx - centerX) // atan2 fonksiyonu radyan dönderiyor.
+  var radians = Math.atan2(arrowy - centerY, arrowx - centerX); // atan2 fonksiyonu radyan dönderiyor.
 
-  var degrees = radians * 180 / Math.PI; // 1 rad = 180/pi
+  var degrees = (radians * 180) / Math.PI; // 1 rad = 180/pi
+  degrees = degrees + 180; // 180 derece eklediğim zaman okun alt kısmından değil üst kısmından dönüyor.
   Arrow.style.transform = "rotate(" + degrees + "deg)";
 }
 
 function ArrowEventListener() {
   var Box = document.getElementsByClassName("Box")[0];
   Box.addEventListener("mousemove", ArrowEvent);
-  // Box.addEventListener("mouseenter", ArrowEvent, false);
-  // Box.addEventListener("mouseleave", ArrowEvent, false);
 }
