@@ -1,0 +1,16 @@
+#arrowsvg {
+  margin-left: 250px;
+  margin-top: 200px;
+  width: 200px;
+  height: 100px;
+
+}
+
+.Box {
+  margin-left: 350px;
+  margin-top: 75px;
+  width: 700px;
+  height: 500px;
+  background-color: whitesmoke;
+  border: 2px solid lightblue;
+}
